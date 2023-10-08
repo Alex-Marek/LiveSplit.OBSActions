@@ -1,0 +1,3695 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Codaxy.Xlio</name>
+    </assembly>
+    <members>
+        <member name="T:Codaxy.Xlio.Cell">
+            <summary>
+            Cell location e.g. A1
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.Cell.Row">
+            <summary>
+            Zero indexed row number
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.Cell.Col">
+            <summary>
+            Zero indexed column number
+            </summary>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.Parse(System.String)">
+            <summary>
+            Convert to cell from its string representaion
+            </summary>
+            <param name="reference">Textual cell reference, e.g. A1</param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.Parse(System.String,System.Int32,System.Int32)">
+            <summary>
+            Parse cell from the part of the string
+            </summary>
+            <param name="reference">Textual cell reference, e.g. A1</param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.ParseColumn(System.String)">
+            <summary>
+            Convert string column name to column offset number
+            </summary>
+            <param name="reference"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.Format(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Format cell e.g. (0, 0) => A1
+            </summary>
+            <param name="row"></param>
+            <param name="col"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.Clone">
+            <summary>
+            Clones the cell.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.ToString">
+            <summary>
+            Returns cell's string representation, e.g. A1.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.op_Equality(Codaxy.Xlio.Cell,Codaxy.Xlio.Cell)">
+            <summary>
+            Operator ==
+            </summary>
+            <param name="a">A.</param>
+            <param name="b">The b.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Cell.op_Inequality(Codaxy.Xlio.Cell,Codaxy.Xlio.Cell)">
+            <summary>
+            Operator !=
+            </summary>
+            <param name="a">A.</param>
+            <param name="b">The b.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Codaxy.Xlio.CellData">
+            <summary>
+            CellData contains information about the cell, such as the cell value, formula, formatting, etc.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellData.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellData.Formula">
+            <summary>
+            Formula used to calculate the cell value.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellData.SharedFormula">
+            <summary>
+            A formula that can be shared between multiple cells. Use it to assign same formula to a range of cells.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellData.Style">
+            <summary>
+            Contains cell style information.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellData.MergedRange">
+            <summary>
+            Contains information about the marged area this cell belongs to.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellData.IsMerged">
+            <summary>
+            True if cell is merged.
+            </summary>
+        </member>
+        <member name="T:Codaxy.Xlio.CellStyle">
+            <summary>
+            CellStyle class contains information about cell styling such as cell borders, fill, font, format, text alignment, etc.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellStyle.Border">
+            <summary>
+            Border
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellStyle.Fill">
+            <summary>
+            Fill
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellStyle.Font">
+            <summary>
+            Font
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellStyle.Alignment">
+            <summary>
+            Alignment
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellStyle.Format">
+            <summary>
+            Format
+            </summary>
+        </member>
+        <member name="M:Codaxy.Xlio.CellStyle.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellStyle.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellStyle.op_Equality(Codaxy.Xlio.CellStyle,Codaxy.Xlio.CellStyle)">
+            <summary>
+            Operator ==
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellStyle.op_Inequality(Codaxy.Xlio.CellStyle,Codaxy.Xlio.CellStyle)">
+            <summary>
+            Operator !=
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Codaxy.Xlio.HorizontalAlignment">
+            <summary>
+            Defines horizontal alignment of text
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.HorizontalAlignment.General">
+            <summary>
+            The horizontal alignment is general-aligned. Text data 
+            is left-aligned. Numbers, dates, and times are right-
+            aligned. Boolean types are centered. Changing the 
+            alignment does not change the type of data.  
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.HorizontalAlignment.Left">
+            <summary>
+            The horizontal alignment is left-aligned, even in Right-to-Left mode. Aligns contents at the left edge of the 
+            cell. If an indent amount is specified, the contents of 
+            the cell is indented from the left by the specified 
+            number of character spaces. The character spaces are 
+            based on the default font and font size for the 
+            workbook.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.HorizontalAlignment.Center">
+            <summary>
+            The horizontal alignment is centered, meaning the text is centered across the cell. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.HorizontalAlignment.Right">
+            <summary>
+            The horizontal alignment is right-aligned, meaning that 
+            cell contents are aligned at the right edge of the cell, 
+            even in Right-to-Left mode. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.HorizontalAlignment.Fill">
+            <summary>
+            Indicates that the value of the cell should be filled 
+            across the entire width of the cell. If blank cells to the 
+            right also have the fill alignment, they are also filled 
+            with the value, using a convention similar to 
+            centerContinuous. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.HorizontalAlignment.Justify">
+            <summary>
+            The horizontal alignment is justified (flush left and 
+            right). For each line of text, aligns each line of the 
+            wrapped text in a cell to the right and left (except the 
+            last line). If no single line of text wraps in the cell, then 
+            the text is not justified. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.HorizontalAlignment.CenterContinuous">
+            <summary>
+            The horizontal alignment is centered across multiple 
+            cells. The information about how many cells to span is 
+            expressed in the Sheet Part, in the row of the cell in 
+            question. For each cell that is spanned in the 
+            alignment, a cell element needs to be written out, with 
+            the same style Id which references the 
+            centerContinuous alignment.  
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.HorizontalAlignment.Distributed">
+            <summary>
+            I/ndicates that each 'word' in each line of text inside 
+            the cell is evenly distributed across the width of the 
+            cell, with flush right and left margins.
+            </summary>
+        </member>
+        <member name="T:Codaxy.Xlio.VerticalAlignment">
+            <summary>
+            Defines vertical alignment of text inside a cell.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.VerticalAlignment.Top">
+            <summary>
+            The vertical alignment is aligned-to-top.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.VerticalAlignment.Center">
+            <summary>
+            The vertical alignment is centered across the height of the cell. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.VerticalAlignment.Bottom">
+            <summary>
+            The vertical alignment is aligned-to-bottom.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.VerticalAlignment.Justify">
+            <summary>
+            When text direction is horizontal: the vertical 
+            alignment of lines of text is distributed vertically, 
+            where each line of text inside the cell is evenly 
+            distributed across the height of the cell, with flush top 
+            and bottom margins.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.VerticalAlignment.Distributed">
+            <summary>
+            When text direction is horizontal: the vertical 
+            alignment of lines of text is distributed vertically, 
+            where each line of text inside the cell is evenly 
+            distributed across the height of the cell, with flush top 
+            and bottom margins.
+            </summary>
+        </member>
+        <member name="T:Codaxy.Xlio.CellAlignment">
+            <summary>
+            CellAlignment class defines cell vertical and horizontal alignment, text indent and rotation, text wrapping and justification.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.HAlign">
+            <summary>
+            Gets or sets the horizontal alignment.
+            </summary>
+            <value>
+            The horizontal alignment.
+            </value>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.Horizontal">
+            <summary>
+            Gets or sets the horizontal alignment.
+            </summary>
+            <value>
+            The horizontal alignment.
+            </value>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.VAlign">
+            <summary>
+            Gets or sets the vertical alignment.
+            </summary>
+            <value>
+            The vertical alignment.
+            </value>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.Vertical">
+            <summary>
+            Gets or sets the vertical alignment.
+            </summary>
+            <value>
+            The vertical alignment.
+            </value>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.Indent">
+            <summary>
+            Indent
+            1 = 3 spaces
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.ShrinkToFit">
+            <summary>
+            Set true to shrink text to fit cell.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.TextRotation">
+            <summary>
+            Text rotation in degrees.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.WrapText">
+            <summary>
+            Set to true to wrap text in multiple lines.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.CellAlignment.JustifyLastLine">
+            <summary>
+            Set to true to justify last line. Works only if HAlign is set to Justify.
+            </summary>
+        </member>
+        <member name="M:Codaxy.Xlio.CellAlignment.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellAlignment.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellAlignment.op_Equality(Codaxy.Xlio.CellAlignment,Codaxy.Xlio.CellAlignment)">
+            <summary>
+            Operator ==
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellAlignment.op_Inequality(Codaxy.Xlio.CellAlignment,Codaxy.Xlio.CellAlignment)">
+            <summary>
+            Operator !=
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Codaxy.Xlio.Color">
+            <summary>
+            Color class is used to define colors (fill, border, etc.)
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.Color.a">
+            <summary>
+            Alpha component (ARGB)
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.Color.r">
+            <summary>
+            Red component (ARGB)
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.Color.g">
+            <summary>
+            Green component (ARGB)
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.Color.b">
+            <summary>
+            Blue component (ARGB)
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.Color.tint">
+            <summary>
+            Tint specifies a lighter version of its input color. A 10% tint is 10% of the input color combined with 90% white.
+            </summary>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.#ctor">
+            <summary>
+            Black
+            </summary>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            RGB color
+            </summary>
+            <param name="r"></param>
+            <param name="g"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.#ctor(System.String)">
+            <summary>
+            Web color
+            </summary>
+            <param name="sharpHex">The web.</param>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.#ctor(System.UInt32)">
+            <summary>
+            ARGB
+            </summary>
+            <param name="argb"></param>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.#ctor(System.Byte[])">
+            <summary>
+            ARGB
+            </summary>
+            <param name="argb"></param>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.Clone">
+            <summary>
+            Clone color
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.op_Equality(Codaxy.Xlio.Color,Codaxy.Xlio.Color)">
+            <summary>
+            operator ==
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.Color.op_Inequality(Codaxy.Xlio.Color,Codaxy.Xlio.Color)">
+            <summary>
+            operator !=
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Codaxy.Xlio.Color.Black">
+            <summary>
+            Instance of black color.
+            </summary>
+        </member>
+        <member name="M:Codaxy.Xlio.CellFill.op_Equality(Codaxy.Xlio.CellFill,Codaxy.Xlio.CellFill)">
+            <summary>
+            Operator ==
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellFill.op_Inequality(Codaxy.Xlio.CellFill,Codaxy.Xlio.CellFill)">
+            <summary>
+            Operator !=
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellBorder.op_Equality(Codaxy.Xlio.CellBorder,Codaxy.Xlio.CellBorder)">
+            <summary>
+            Operator ==
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellBorder.op_Inequality(Codaxy.Xlio.CellBorder,Codaxy.Xlio.CellBorder)">
+            <summary>
+            Operator !=
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.None">
+            <summary>
+            The line style of a border is none (no border visible).
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.Thin">
+            <summary>
+            The line style of a border is thin.  
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.Medium">
+            <summary>
+            The line style of a border is medium. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.Dashed">
+            <summary>
+            The line style of a border is dashed.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.Dotted">
+            <summary>
+            The line style of a border is dotted.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.Thick">
+            <summary>
+            The line style of a border is 'thick'.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.Double">
+            <summary>
+            The line style of a border is double line.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.Hair">
+            <summary>
+            The line style of a border is hairline. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.MediumDashed">
+            <summary>
+            The line style of a border is medium dashed. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.DashDot">
+            <summary>
+            The line style of a border is dash-dot. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.MediumDashDot">
+            <summary>
+            The line style of a border is medium dash-dot.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.DashDotDot">
+            <summary>
+            The line style of a border is dash-dot-dot. 
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.MediumDashDotDot">
+            <summary>
+            The line style of a border is medium dash-dot-dot.
+            </summary>
+        </member>
+        <member name="F:Codaxy.Xlio.BorderStyle.SlantDashDot">
+            <summary>
+            The line style of a border is slant-dash-dot. 
+            </summary>
+        </member>
+        <member name="T:Codaxy.Xlio.BorderEdge">
+            <summary>
+            BorderEdge contains complete information about border styling
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.BorderEdge.Style">
+            <summary>
+            Gets or sets the border style.
+            </summary>
+            <value>
+            The style.
+            </value>
+        </member>
+        <member name="P:Codaxy.Xlio.BorderEdge.Color">
+            <summary>
+            Gets or sets the border color.
+            </summary>
+            <value>
+            The color.
+            </value>
+        </member>
+        <member name="M:Codaxy.Xlio.BorderEdge.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.BorderEdge.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.BorderEdge.op_Equality(Codaxy.Xlio.BorderEdge,Codaxy.Xlio.BorderEdge)">
+            <summary>
+            Operator ==
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.BorderEdge.op_Inequality(Codaxy.Xlio.BorderEdge,Codaxy.Xlio.BorderEdge)">
+            <summary>
+            Operator !=
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.BorderEdge.Hair">
+            <summary>
+            Construct black hair border edge
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.BorderEdge.Hair(Codaxy.Xlio.Color)">
+            <summary>
+            Constructs border edge of given color and hair width.
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Codaxy.Xlio.CellFont">
+            <summary>
+            Defines cell font.
+            </summary>
+        </member>
+        <member name="M:Codaxy.Xlio.CellFont.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codaxy.Xlio.CellFont"/> class.
+            </summary>
+        </member>
+        <member name="M:Codaxy.Xlio.CellFont.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellFont.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellFont.op_Equality(Codaxy.Xlio.CellFont,Codaxy.Xlio.CellFont)">
+            <summary>
+            operator ==
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.CellFont.op_Inequality(Codaxy.Xlio.CellFont,Codaxy.Xlio.CellFont)">
+            <summary>
+            Operator !=
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddColorScale(Codaxy.Xlio.ColorScale)">
+            <summary>
+            Add created color scale.
+            </summary>
+            <param name="colorScale"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddColorScale(Codaxy.Xlio.Color,Codaxy.Xlio.Color)">
+            <summary>
+            Add two color scale.
+            </summary>
+            <param name="colorScale"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddColorScale(Codaxy.Xlio.Color,Codaxy.Xlio.Color,Codaxy.Xlio.Color,System.Int32)">
+            <summary>
+            Add three color scale.
+            </summary>
+            <param name="minimum"></param>
+            <param name="midpoint"></param>
+            <param name="maximum"></param>
+            <param name="centerPercentage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddColorScale(System.Collections.Generic.List{Codaxy.Xlio.CFVO},System.Collections.Generic.List{Codaxy.Xlio.Color})">
+            <summary>
+            Add color scale with specified ConditionalFormattingValueObject and Color lists.
+            </summary>
+            <param name="cfvoList"></param>
+            <param name="colors"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddDefaultTwoColorScale">
+            <summary>
+            Default two color scale with red color as minimum and green as maxmimum.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddDefaultThreeColorScale(System.Int32)">
+            <summary>
+            Default three color scale with red color as minimum, yellow as midpoint and green as maximum.
+            </summary>
+            <param name="centerPercentage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddDataBar(Codaxy.Xlio.DataBar)">
+            <summary>
+            Add created data bar.
+            </summary>
+            <param name="dataBar"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddDefaultDataBar(Codaxy.Xlio.Color)">
+            <summary>
+            Add default data bar.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddDataBar(System.Collections.Generic.List{Codaxy.Xlio.CFVO},Codaxy.Xlio.Color)">
+            <summary>
+            Add data bar with specified ConditionalFormattingValueObject and Color lists.
+            </summary>
+            <param name="cfvoList"></param>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddDataBar(Codaxy.Xlio.CFVO,Codaxy.Xlio.CFVO,Codaxy.Xlio.Color)">
+            <summary>
+            Add data bar with specified CFVOs for start and end values, as well as color.
+            </summary>
+            <param name="cfvoList"></param>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddIconSet(Codaxy.Xlio.IconSet)">
+            <summary>
+            Add created icon set.
+            </summary>
+            <param name="iconSet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.ConditionalFormatting.AddDefaultIconSet(Codaxy.Xlio.IconSetType,System.Boolean)">
+            <summary>
+            Add default icon set.
+            </summary>
+            <param name="iconSetType"></param>
+            <param name="showValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.SimpleLiteral">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.SimpleLiteral.Text">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_Relationship">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Relationship.TargetMode">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Relationship.TargetModeSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Relationship.Target">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Relationship.Type">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Relationship.Id">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Relationship.Value">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.ST_TargetMode">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ST_TargetMode.External">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ST_TargetMode.Internal">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_SignatureTime">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_SignatureTime.Format">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_SignatureTime.Value">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_Keyword">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Keyword.lang">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Keyword.Value">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_Keywords">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Keywords.value">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Keywords.Text">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Keywords.lang">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_CoreProperties">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.category">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.contentStatus">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.created">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.creator">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.description">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.identifier">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.keywords">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.language">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.lastModifiedBy">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.lastPrinted">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.lastPrintedSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.modified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.revision">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.subject">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.title">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_CoreProperties.version">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_Override">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Override.ContentType">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Override.PartName">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_Default">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Default.Extension">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Default.ContentType">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.elementOrRefinementContainer">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.elementOrRefinementContainer.Items">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.elementOrRefinementContainer.ItemsElementName">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.ItemsChoiceType1">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.contributor">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.coverage">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.creator">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.date">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.description">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.format">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.identifier">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.language">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.publisher">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.relation">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.rights">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.source">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.subject">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.title">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.type">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.audience">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType1.mediator">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.elementContainer">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.elementContainer.Items">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.elementContainer.ItemsElementName">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.ItemsChoiceType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.contributor">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.coverage">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.creator">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.date">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.description">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.format">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.identifier">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.language">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.publisher">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.relation">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.rights">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.source">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.subject">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.title">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Opc.ItemsChoiceType.type">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.TGN">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.Box">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.ISO3166">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.Point">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.RFC1766">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.ISO6392">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.URI">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.IMT">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.DCMIType">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.W3CDTF">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.Period">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.UDC">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.LCC">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.DDC">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.MESH">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.LCSH">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_Types">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Types.Items">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_RelationshipReference">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_RelationshipReference.SourceId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_RelationshipReference.Value">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_RelationshipsGroupReference">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_RelationshipsGroupReference.SourceType">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_RelationshipsGroupReference.Value">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Opc.CT_Relationships">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Opc.CT_Relationships.Relationship">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Stylesheet">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.numFmts">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.fonts">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.fills">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.borders">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.cellStyleXfs">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.cellXfs">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.cellStyles">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.dxfs">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.tableStyles">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.colors">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Stylesheet.extLst">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_NumFmts">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_NumFmts.numFmt">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_NumFmts.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_NumFmts.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_NumFmt">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_NumFmt.numFmtId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_NumFmt.formatCode">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Fonts">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Fonts.font">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Fonts.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Fonts.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Font">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Font.Items">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Font.ItemsElementName">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_BooleanProperty">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BooleanProperty.val">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_IntProperty">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_IntProperty.val">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Color1">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Color1.auto">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Color1.autoSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Color1.indexed">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Color1.indexedSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Color1.rgb">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Color1.theme">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Color1.themeSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Color1.tint">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_FontName">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_FontName.val">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_FontScheme1">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_FontScheme1.val">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_FontScheme">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_FontScheme.none">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_FontScheme.major">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_FontScheme.minor">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_FontSize">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_FontSize.val">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_UnderlineProperty">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_UnderlineProperty.val">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_UnderlineValues">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_UnderlineValues.single">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_UnderlineValues.double">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_UnderlineValues.singleAccounting">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_UnderlineValues.doubleAccounting">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_UnderlineValues.none">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_VerticalAlignFontProperty">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_VerticalAlignFontProperty.val">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignRun">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignRun.baseline">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignRun.superscript">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignRun.subscript">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.b">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.charset">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.color">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.condense">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.extend">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.family">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.i">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.name">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.outline">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.scheme">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.shadow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.strike">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.sz">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.u">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType3.vertAlign">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Fills">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Fills.fill">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Fills.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Fills.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Fill">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Fill.Item">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_GradientFill">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientFill.stop">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientFill.type">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientFill.degree">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientFill.left">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientFill.right">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientFill.top">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientFill.bottom">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_GradientStop1">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientStop1.color">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_GradientStop1.position">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_GradientType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_GradientType.linear">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_GradientType.path">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PatternFill">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PatternFill.fgColor">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PatternFill.bgColor">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PatternFill.patternType">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PatternFill.patternTypeSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_PatternType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.none">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.solid">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.mediumGray">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.darkGray">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.lightGray">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.darkHorizontal">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.darkVertical">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.darkDown">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.darkUp">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.darkGrid">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.darkTrellis">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.lightHorizontal">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.lightVertical">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.lightDown">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.lightUp">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.lightGrid">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.lightTrellis">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.gray125">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PatternType.gray0625">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Borders">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Borders.border">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Borders.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Borders.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Border">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.left">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.right">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.top">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.bottom">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.diagonal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.vertical">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.horizontal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.diagonalUp">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.diagonalUpSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.diagonalDown">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.diagonalDownSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Border.outline">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_BorderPr">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BorderPr.color">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BorderPr.style">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_BorderStyle">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.none">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.thin">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.medium">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.dashed">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.dotted">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.thick">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.double">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.hair">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.mediumDashed">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.dashDot">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.mediumDashDot">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.dashDotDot">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.mediumDashDotDot">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_BorderStyle.slantDashDot">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_CellStyleXfs">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyleXfs.xf">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyleXfs.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyleXfs.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Xf">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.alignment">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.numFmtId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.numFmtIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.fontId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.fontIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.fillId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.fillIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.borderId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.borderIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.xfId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.xfIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.quotePrefix">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.pivotButton">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyNumberFormat">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyNumberFormatSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyFont">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyFontSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyFill">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyFillSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyBorder">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyBorderSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyAlignment">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyAlignmentSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyProtection">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Xf.applyProtectionSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_CellAlignment">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.horizontal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.horizontalSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.vertical">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.verticalSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.textRotation">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.textRotationSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.wrapText">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.wrapTextSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.indent">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.indentSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.relativeIndent">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.relativeIndentSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.justifyLastLine">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.justifyLastLineSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.shrinkToFit">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.shrinkToFitSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.readingOrder">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellAlignment.readingOrderSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment.general">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment.left">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment.center">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment.right">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment.fill">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment.justify">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment.centerContinuous">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_HorizontalAlignment.distributed">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignment">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignment.top">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignment.center">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignment.bottom">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignment.justify">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_VerticalAlignment.distributed">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Colors">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Colors.indexedColors">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Colors.mruColors">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_RgbColor">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_RgbColor.rgb">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Sst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sst.si">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sst.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sst.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sst.countSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sst.uniqueCount">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sst.uniqueCountSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Rst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Rst.t">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Rst.r">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Rst.rPh">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Rst.phoneticPr">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_RElt">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_RElt.rPr">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_RElt.t">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_RPrElt">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_RPrElt.Items">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_RPrElt.ItemsElementName">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.b">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.charset">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.color">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.condense">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.extend">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.family">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.i">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.outline">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.rFont">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.scheme">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.shadow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.strike">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.sz">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.u">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ItemsChoiceType4.vertAlign">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PhoneticRun">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PhoneticRun.t">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PhoneticRun.sb">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PhoneticRun.eb">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PhoneticPr">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PhoneticPr.fontId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PhoneticPr.type">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PhoneticPr.alignment">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_PhoneticType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PhoneticType.halfwidthKatakana">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PhoneticType.fullwidthKatakana">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PhoneticType.Hiragana">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PhoneticType.noConversion">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_PhoneticAlignment">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PhoneticAlignment.noControl">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PhoneticAlignment.left">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PhoneticAlignment.center">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PhoneticAlignment.distributed">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Extension">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Extension.Any">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Extension.uri">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_CellXfs">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellXfs.xf">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellXfs.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellXfs.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_CellStyles">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyles.cellStyle">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyles.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyles.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_CellStyle">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.name">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.xfId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.builtinId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.builtinIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.iLevel">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.iLevelSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.hidden">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.hiddenSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.customBuiltin">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellStyle.customBuiltinSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Dxfs">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxfs.dxf">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxfs.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxfs.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Dxf">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxf.font">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxf.numFmt">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxf.fill">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxf.alignment">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxf.border">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxf.protection">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Dxf.extLst">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_TableStyles">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyles.tableStyle">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyles.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyles.countSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyles.defaultTableStyle">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyles.defaultPivotStyle">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_TableStyle">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyle.tableStyleElement">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyle.name">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyle.pivot">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyle.table">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyle.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyle.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_TableStyleElement">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyleElement.type">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyleElement.size">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyleElement.dxfId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_TableStyleElement.dxfIdSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_TableStyleType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.wholeTable">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.headerRow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.totalRow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstColumn">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.lastColumn">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstRowStripe">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.secondRowStripe">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstColumnStripe">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.secondColumnStripe">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstHeaderCell">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.lastHeaderCell">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstTotalCell">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.lastTotalCell">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstSubtotalColumn">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.secondSubtotalColumn">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.thirdSubtotalColumn">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstSubtotalRow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.secondSubtotalRow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.thirdSubtotalRow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.blankRow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstColumnSubheading">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.secondColumnSubheading">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.thirdColumnSubheading">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.firstRowSubheading">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.secondRowSubheading">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.thirdRowSubheading">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.pageFieldLabels">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TableStyleType.pageFieldValues">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_ExtensionList">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_ExtensionList.ext">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_CellProtection">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellProtection.locked">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellProtection.lockedSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellProtection.hidden">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellProtection.hiddenSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Workbook">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Workbook.bookViews">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Workbook.sheets">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Workbook.definedNames">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Sheet">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sheet.name">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sheet.sheetId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sheet.state">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Sheet.id">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_SheetState">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_SheetState.visible">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_SheetState.hidden">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_SheetState.veryHidden">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_CellFormulaType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellFormulaType.normal">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellFormulaType.array">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellFormulaType.dataTable">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellFormulaType.shared">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_CellType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellType.b">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellType.n">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellType.e">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellType.s">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellType.str">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellType.inlineStr">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Row">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.c">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.r">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.rSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.spans">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.s">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.customFormat">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.ht">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.htSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.hidden">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.customHeight">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.outlineLevel">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.collapsed">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.thickTop">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.thickBot">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Row.ph">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Cell">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.f">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.v">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.is">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.r">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.s">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.t">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.cm">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.vm">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cell.ph">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_CellFormula">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.t">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.aca">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.ref">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.dt2D">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.dtr">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.del1">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.del2">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.r1">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.r2">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.ca">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.si">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.siSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.bx">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CellFormula.Value">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Worksheet">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.sheetViews">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.sheetFormatPr">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.cols">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.sheetData">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.autoFilter">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.mergeCells">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.conditionalFormatting">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.pageMargins">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.pageSetup">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.rowBreaks">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Worksheet.colBreaks">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Col">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.min">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.max">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.width">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.widthSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.style">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.hidden">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.bestFit">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.customWidth">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.phonetic">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.outlineLevel">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Col.collapsed">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_MergeCells">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_MergeCells.mergeCell">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_MergeCells.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_MergeCells.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_MergeCell">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_MergeCell.ref">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_SheetViews">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetViews.sheetView">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetViews.extLst">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_SheetView">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.pane">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.selection">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.pivotSelection">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.windowProtection">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.showFormulas">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.showGridLines">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.showRowColHeaders">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.showZeros">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.rightToLeft">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.tabSelected">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.showRuler">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.showOutlineSymbols">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.defaultGridColor">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.showWhiteSpace">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.view">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.topLeftCell">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.colorId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.zoomScale">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.zoomScaleNormal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.zoomScaleSheetLayoutView">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.zoomScalePageLayoutView">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetView.workbookViewId">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Pane">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Pane.xSplit">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Pane.ySplit">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Pane.topLeftCell">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Pane.activePane">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Pane.state">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_Pane">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Pane.bottomRight">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Pane.topRight">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Pane.bottomLeft">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Pane.topLeft">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_PaneState">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PaneState.split">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PaneState.frozen">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PaneState.frozenSplit">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PivotSelection">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.pivotArea">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.pane">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.showHeader">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.label">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.data">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.extendable">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.axis">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.axisSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.dimension">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.start">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.min">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.max">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.activeRow">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.activeCol">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.previousRow">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.previousCol">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.click">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotSelection.id">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.name">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.comment">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.customMenu">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.description">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.help">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.statusBar">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.localSheetId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.localSheetIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.hidden">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.function">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.vbProcedure">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.xlm">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.functionGroupId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.functionGroupIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.shortcutKey">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.publishToServer">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.workbookParameter">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DefinedName.Value">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_SheetViewType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_SheetViewType.normal">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_SheetViewType.pageBreakPreview">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_SheetViewType.pageLayout">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Selection">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Selection.pane">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Selection.activeCell">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Selection.activeCellId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Selection.sqref">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.references">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.field">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.fieldSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.type">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.dataOnly">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.labelOnly">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.grandRow">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.grandCol">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.cacheIndex">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.outline">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.offset">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.collapsedLevelsAreSubtotals">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.axis">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.axisSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.fieldPosition">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotArea.fieldPositionSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReferences">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReferences.reference">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReferences.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReferences.countSpecified">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.x">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.field">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.fieldSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.countSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.selected">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.byPosition">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.relative">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.defaultSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.sumSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.countASubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.avgSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.maxSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.minSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.productSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.countSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.stdDevSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.stdDevPSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.varSubtotal">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PivotAreaReference.varPSubtotal">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_PivotAreaType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PivotAreaType.none">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PivotAreaType.normal">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PivotAreaType.data">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PivotAreaType.all">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PivotAreaType.origin">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PivotAreaType.button">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PivotAreaType.topRight">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_Axis">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Axis.axisRow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Axis.axisCol">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Axis.axisPage">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Axis.axisValues">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Index">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Index.v">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.baseColWidth">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.defaultColWidth">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.defaultColWidthSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.defaultRowHeight">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.customHeight">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.zeroHeight">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.thickTop">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.thickBottom">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.outlineLevelRow">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_SheetFormatPr.outlineLevelCol">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_BookView">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.visibility">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.minimized">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.showHorizontalScroll">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.showVerticalScroll">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.showSheetTabs">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.xWindow">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.xWindowSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.yWindow">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.yWindowSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.windowWidth">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.windowWidthSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.windowHeight">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.windowHeightSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.tabRatio">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.firstSheet">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.activeTab">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_BookView.autoFilterDateGrouping">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_Visibility">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Visibility.visible">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Visibility.hidden">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Visibility.veryHidden">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PageBreak">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageBreak.brk">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageBreak.count">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageBreak.manualBreakCount">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Break">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Break.id">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Break.min">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Break.max">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Break.man">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Break.pt">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PageSetup">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.paperSize">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.scale">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.firstPageNumber">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.fitToWidth">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.fitToHeight">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.pageOrder">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.orientation">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.usePrinterDefaults">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.blackAndWhite">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.draft">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.cellComments">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.useFirstPageNumber">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.errors">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.horizontalDpi">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.verticalDpi">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.copies">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageSetup.id">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_PageOrder">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PageOrder.downThenOver">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PageOrder.overThenDown">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_Orientation">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Orientation.default">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Orientation.portrait">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_Orientation.landscape">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_CellComments">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellComments.none">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellComments.asDisplayed">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CellComments.atEnd">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_PrintError">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PrintError.displayed">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PrintError.blank">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PrintError.dash">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_PrintError.NA">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_PageMargins">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageMargins.left">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageMargins.right">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageMargins.top">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageMargins.bottom">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageMargins.header">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_PageMargins.footer">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_ConditionalFormatting">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_ConditionalFormatting.cfRule">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_ConditionalFormatting.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_ConditionalFormatting.pivot">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_ConditionalFormatting.sqref">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_CfRule">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.formula">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.colorScale">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.dataBar">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.iconSet">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.type">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.typeSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.dxfId">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.dxfIdSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.priority">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.stopIfTrue">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.aboveAverage">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.percent">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.bottom">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.operator">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.operatorSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.text">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.timePeriod">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.timePeriodSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.rank">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.rankSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.stdDev">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.stdDevSpecified">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_CfRule.equalAverage">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_ColorScale">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_ColorScale.cfvo">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_ColorScale.color">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_Cfvo">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cfvo.extLst">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cfvo.type">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cfvo.val">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_Cfvo.gte">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_CfvoType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfvoType.num">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfvoType.percent">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfvoType.max">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfvoType.min">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfvoType.formula">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfvoType.percentile">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_DataBar">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DataBar.cfvo">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DataBar.color">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DataBar.minLength">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DataBar.maxLength">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_DataBar.showValue">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.CT_IconSet">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_IconSet.cfvo">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_IconSet.iconSet">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_IconSet.showValue">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_IconSet.percent">
+            <remarks/>
+        </member>
+        <member name="P:Codaxy.Xlio.Model.Oxml.CT_IconSet.reverse">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_CfType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.expression">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.cellIs">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.colorScale">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.dataBar">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.iconSet">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.top10">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.uniqueValues">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.duplicateValues">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.containsText">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.notContainsText">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.beginsWith">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.endsWith">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.containsBlanks">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.notContainsBlanks">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.containsErrors">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.notContainsErrors">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.timePeriod">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_CfType.aboveAverage">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.lessThan">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.lessThanOrEqual">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.equal">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.notEqual">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.greaterThanOrEqual">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.greaterThan">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.between">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.notBetween">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.containsText">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.notContains">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.beginsWith">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_ConditionalFormattingOperator.endsWith">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_TimePeriod">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.today">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.yesterday">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.tomorrow">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.last7Days">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.thisMonth">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.lastMonth">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.nextMonth">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.thisWeek">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.lastWeek">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_TimePeriod.nextWeek">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Model.Oxml.ST_IconSetType">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item3Arrows">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item3ArrowsGray">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item3Flags">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item3TrafficLights1">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item3TrafficLights2">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item3Signs">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item3Symbols">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item3Symbols2">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item4Arrows">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item4ArrowsGray">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item4RedToBlack">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item4Rating">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item4TrafficLights">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item5Arrows">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item5ArrowsGray">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item5Rating">
+            <remarks/>
+        </member>
+        <member name="F:Codaxy.Xlio.Model.Oxml.ST_IconSetType.Item5Quarters">
+            <remarks/>
+        </member>
+        <member name="T:Codaxy.Xlio.Array`1">
+            <summary>
+            One dimensional array of objects based on SortedDictionary.
+            If value does not exists in the dictionary, it's added automatically.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Codaxy.Xlio.Array`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codaxy.Xlio.Array`1"/> class.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.Array`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the cell at the specified index.
+            </summary>
+            <value>
+            The cell.
+            </value>
+            <param name="index">The index.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Codaxy.Xlio.Array`1.Data">
+            <summary>
+            Gets the underlying data.
+            </summary>
+            <value>
+            The data.
+            </value>
+        </member>
+        <member name="P:Codaxy.Xlio.Array`1.Count">
+            <summary>
+            Gets the number of the elements in the array.
+            </summary>
+            <value>
+            The count.
+            </value>
+        </member>
+        <member name="T:Codaxy.Xlio.Matrix`1">
+            <summary>
+            Two dimensional array.
+            If value does not exists in the dictionary, it's added automatically.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Codaxy.Xlio.Matrix`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Codaxy.Xlio.Matrix`1"/> class.
+            </summary>
+        </member>
+        <member name="P:Codaxy.Xlio.Matrix`1.Item(System.Int32,System.Int32)">
+            <summary>
+            Gets or sets the cell with the given column and row index.
+            </summary>
+            <value>
+            The cell.
+            </value>
+            <param name="row">The row.</param>
+            <param name="col">The col.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Codaxy.Xlio.Matrix`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the row with the specified index.
+            </summary>
+            <value>
+            The row.
+            </value>
+            <param name="row">The row.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Codaxy.Xlio.Matrix`1.Data">
+            <summary>
+            Gets the unerlying data structure.
+            </summary>
+            <value>
+            The data.
+            </value>
+        </member>
+        <member name="M:Codaxy.Xlio.Range.op_Equality(Codaxy.Xlio.Range,Codaxy.Xlio.Range)">
+            <summary>
+            Operator !=
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Codaxy.Xlio.SheetColumnCollection.AppendRange(System.Int32,System.Int32,Codaxy.Xlio.SheetColumn)">
+            <summary>
+            Used in loading data
+            </summary>
+            <param name="firstCol"></param>
+            <param name="lastCol"></param>
+            <param name="sheetColumn"></param>
+        </member>
+        <member name="M:Codaxy.Xlio.XlioUtil.GetColumnName(System.Int32)">
+            <summary>
+            Returns the Excel name of the zero indexed column number 0->A, 1->B
+            </summary>
+            <param name="col">Zero indexed column number.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

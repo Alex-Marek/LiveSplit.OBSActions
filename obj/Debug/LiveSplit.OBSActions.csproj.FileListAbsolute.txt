@@ -1,0 +1,4 @@
+C:\Users\Alex-Marek\Documents\Programming\C#\Livesplit.OBSActions\LiveSplit.OBSActions\obj\Debug\LiveSplit.UI.Components.OBSActionsSettings.resources
+C:\Users\Alex-Marek\Documents\Programming\C#\Livesplit.OBSActions\LiveSplit.OBSActions\obj\Debug\LiveSplit.OBSActions.csproj.GenerateResource.cache
+C:\Users\Alex-Marek\Documents\Programming\C#\Livesplit.OBSActions\LiveSplit.OBSActions\obj\Debug\LiveSplit.OBSActions.csproj.CoreCompileInputs.cache
+C:\Users\Alex-Marek\Documents\Programming\C#\Livesplit.OBSActions\LiveSplit.OBSActions\obj\Debug\LiveSplit.OBSActions.csproj.AssemblyReference.cache

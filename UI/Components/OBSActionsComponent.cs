@@ -37,6 +37,31 @@ namespace LiveSplit.UI.Components
         // already added.
         public OBSActionsComponent(LiveSplitState state)
         {
+            Settings = new OBSActionsSettings();
+            InternalComponent = new InfoTextComponent("OBS Actions", "0%");
+
+            CurrentState = state;
+
+            state.OnStart += state_OnStart;
+            state.OnSplit += state_OnSplitChange;
+            state.OnSkipSplit += state_OnSplitChange;
+            state.OnUndoSplit += state_OnSplitChange;
+            state.OnReset += state_OnReset;
+            CurrentState = state;
+        }
+
+        void state_OnStart(object sender, EventArgs e)
+        {
+
+        }
+
+        void state_OnSplitChange(object sender, EventArgs e)
+        {
+
+        }
+
+        void state_OnReset(object sender, TimerPhase e)
+        {
 
         }
 
@@ -54,8 +79,6 @@ namespace LiveSplit.UI.Components
 
         public void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
         {
-            InternalComponent.DisplayTwoRows = Settings.Display2Rows;
-
             InternalComponent.NameLabel.HasShadow
                 = InternalComponent.ValueLabel.HasShadow
                 = state.LayoutSettings.DropShadows;
@@ -94,7 +117,11 @@ namespace LiveSplit.UI.Components
         // closes a layout with this component in it.
         public void Dispose()
         {
-
+            CurrentState.OnStart -= state_OnStart;
+            CurrentState.OnSplit -= state_OnSplitChange;
+            CurrentState.OnSkipSplit -= state_OnSplitChange;
+            CurrentState.OnUndoSplit -= state_OnSplitChange;
+            CurrentState.OnReset -= state_OnReset;
         }
 
         // I do not know what this is for.

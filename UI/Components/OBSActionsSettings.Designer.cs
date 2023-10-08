@@ -1,5 +1,5 @@
 ﻿
-namespace LiveSplit.OBSActions.UI.Components
+namespace LiveSplit.UI.Components
 {
     partial class OBSActionsSettings
     {
