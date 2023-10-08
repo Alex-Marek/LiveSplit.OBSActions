@@ -65,5 +65,10 @@ namespace LiveSplit.UI.Components
             stopRecording = SettingsHelper.ParseBool(element["stopRecording"], false);
             goldReplay = SettingsHelper.ParseBool(element["goldReplay"], false);
         }
+
+        private void topLevelLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

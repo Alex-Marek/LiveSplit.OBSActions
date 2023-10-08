@@ -53,6 +53,7 @@ namespace LiveSplit.UI.Components
             this.topLevelLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.topLevelLayoutPanel.Size = new System.Drawing.Size(200, 144);
             this.topLevelLayoutPanel.TabIndex = 0;
+            this.topLevelLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.topLevelLayoutPanel_Paint);
             // 
             // chkStartRecording
             // 

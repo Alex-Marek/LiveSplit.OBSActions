@@ -8,37 +8,24 @@ using System.Windows.Forms;
 
 namespace LiveSplit.UI.Components
 {
-    public class OBSActionsComponent : IComponent
+    public class OBSActionsComponent : LogicComponent, IDeactivatableComponent
     {
-        // This internal component does the actual heavy lifting. Whenever we want to do something
-        // like display text, we will call the appropriate function on the internal component.
-        protected InfoTextComponent InternalComponent { get; set; }
-        // This is how we will access all the settings that the user has set.
+
+        // Done with the assistance of this tutorial: https://gist.github.com/TheSoundDefense/cf85fd68ae582faa5f1cc95f18bba4ec
+        // Minor changes:
+        // Implement LogicComponent, and IDeactivatableComponent instead of IComponent because this component doesn't need to display anything
+        // Instead of adding LiveSplit.Core and UpdateManager as projects to the solution add the dlls as References (Resolved NuGet issue for me)
         public OBSActionsSettings Settings { get; set; }
-        // This object contains all of the current information about the splits, the timer, etc.
         protected LiveSplitState CurrentState { get; set; }
 
-        public string ComponentName => "OBS Actions";
+        public bool Activated { get; set; }
 
-        public float HorizontalWidth => InternalComponent.HorizontalWidth;
-        public float MinimumWidth => InternalComponent.MinimumWidth;
-        public float VerticalHeight => InternalComponent.VerticalHeight;
-        public float MinimumHeight => InternalComponent.MinimumHeight;
+        public override string ComponentName => "OBS Actions";
 
-        public float PaddingTop => InternalComponent.PaddingTop;
-        public float PaddingLeft => InternalComponent.PaddingLeft;
-        public float PaddingBottom => InternalComponent.PaddingBottom;
-        public float PaddingRight => InternalComponent.PaddingRight;
-
-        public IDictionary<string, Action> ContextMenuControls => null;
-
-        // This function is called when LiveSplit creates your component. This happens when the
-        // component is added to the layout, or when LiveSplit opens a layout with this component
-        // already added.
         public OBSActionsComponent(LiveSplitState state)
         {
+            Activated = true;
             Settings = new OBSActionsSettings();
-            InternalComponent = new InfoTextComponent("OBS Actions", "0%");
 
             CurrentState = state;
 
@@ -48,6 +35,15 @@ namespace LiveSplit.UI.Components
             state.OnUndoSplit += state_OnSplitChange;
             state.OnReset += state_OnReset;
             CurrentState = state;
+        }
+
+        public override void Dispose()
+        {
+            CurrentState.OnStart -= state_OnStart;
+            CurrentState.OnSplit -= state_OnSplitChange;
+            CurrentState.OnSkipSplit -= state_OnSplitChange;
+            CurrentState.OnUndoSplit -= state_OnSplitChange;
+            CurrentState.OnReset -= state_OnReset;
         }
 
         void state_OnStart(object sender, EventArgs e)
@@ -65,66 +61,24 @@ namespace LiveSplit.UI.Components
 
         }
 
-        public void DrawHorizontal(Graphics g, LiveSplitState state, float height, Region clipRegion)
-        {
-            InternalComponent.NameLabel.HasShadow
-                = InternalComponent.ValueLabel.HasShadow
-                = state.LayoutSettings.DropShadows;
-
-            InternalComponent.NameLabel.ForeColor = state.LayoutSettings.TextColor;
-            InternalComponent.ValueLabel.ForeColor = state.LayoutSettings.TextColor;
-
-            InternalComponent.DrawHorizontal(g, state, height, clipRegion);
-        }
-
-        public void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
-        {
-            InternalComponent.NameLabel.HasShadow
-                = InternalComponent.ValueLabel.HasShadow
-                = state.LayoutSettings.DropShadows;
-
-            InternalComponent.NameLabel.ForeColor = state.LayoutSettings.TextColor;
-            InternalComponent.ValueLabel.ForeColor = state.LayoutSettings.TextColor;
-
-            InternalComponent.DrawVertical(g, state, width, clipRegion);
-        }
-
-        public Control GetSettingsControl(LayoutMode mode)
+        public override Control GetSettingsControl(LayoutMode mode)
         {
             Settings.Mode = mode;
             return Settings;
         }
 
-        public System.Xml.XmlNode GetSettings(System.Xml.XmlDocument document)
+        public override System.Xml.XmlNode GetSettings(System.Xml.XmlDocument document)
         {
             return Settings.GetSettings(document);
         }
 
-        public void SetSettings(System.Xml.XmlNode settings)
+        public override void SetSettings(System.Xml.XmlNode settings)
         {
             Settings.SetSettings(settings);
         }
 
-        // This is the function where we decide what needs to be displayed at this moment in time,
-        // and tell the internal component to display it. This function is called hundreds to
-        // thousands of times per second.
-        public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
-        {
+        public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode){ }
 
-        }
-
-        // This function is called when the component is removed from the layout, or when LiveSplit
-        // closes a layout with this component in it.
-        public void Dispose()
-        {
-            CurrentState.OnStart -= state_OnStart;
-            CurrentState.OnSplit -= state_OnSplitChange;
-            CurrentState.OnSkipSplit -= state_OnSplitChange;
-            CurrentState.OnUndoSplit -= state_OnSplitChange;
-            CurrentState.OnReset -= state_OnReset;
-        }
-
-        // I do not know what this is for.
         public int GetSettingsHashCode() => Settings.GetSettingsHashCode();
     }
 }
