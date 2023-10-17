@@ -13,6 +13,10 @@ namespace LiveSplit.UI.Components
 
         public bool goldReplay { get; set; }
 
+        public string webSocketIp { get; set; }
+
+        public string webSocketPassword { get; set; }
+
         public LayoutMode Mode { get; set; }
 
         public OBSActionsSettings()
@@ -36,6 +40,14 @@ namespace LiveSplit.UI.Components
             chkGoldReplay.Enabled = true;
             chkGoldReplay.DataBindings.Clear();
             chkGoldReplay.DataBindings.Add("Checked", this, "goldReplay", false, DataSourceUpdateMode.OnPropertyChanged);
+
+            txtIP.Enabled = true;
+            txtIP.DataBindings.Clear();
+            txtIP.DataBindings.Add("Text", this, "webSocketIP");
+
+            txtPassword.Enabled = true;
+            txtPassword.DataBindings.Clear();
+            txtPassword.DataBindings.Add("Text", this, "webSocketPassword");
         }
 
         private int CreateSettingsNode(XmlDocument document, XmlElement parent)
@@ -43,7 +55,9 @@ namespace LiveSplit.UI.Components
             return SettingsHelper.CreateSetting(document, parent, "Version", "1.0") ^
                 SettingsHelper.CreateSetting(document, parent, "startRecording", startRecording) ^
                 SettingsHelper.CreateSetting(document, parent, "stopRecording", stopRecording) ^
-                SettingsHelper.CreateSetting(document, parent, "goldReplay", goldReplay);
+                SettingsHelper.CreateSetting(document, parent, "goldReplay", goldReplay) ^
+                SettingsHelper.CreateSetting(document, parent, "webSocketIP", webSocketIp) ^
+                SettingsHelper.CreateSetting(document, parent, "webSocketPassword", webSocketPassword);
         }
 
         public XmlNode GetSettings(XmlDocument document)
@@ -64,6 +78,8 @@ namespace LiveSplit.UI.Components
             startRecording = SettingsHelper.ParseBool(element["startRecording"], false);
             stopRecording = SettingsHelper.ParseBool(element["stopRecording"], false);
             goldReplay = SettingsHelper.ParseBool(element["goldReplay"], false);
+            webSocketIp = SettingsHelper.ParseString(element["webSocketIP"]);
+            webSocketPassword = SettingsHelper.ParseString(element["webSocketPassword"]);
         }
 
         private void topLevelLayoutPanel_Paint(object sender, PaintEventArgs e)
