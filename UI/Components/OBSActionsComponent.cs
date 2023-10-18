@@ -41,7 +41,8 @@ namespace LiveSplit.UI.Components
             state.OnReset += state_OnReset;
             CurrentState = state;
 
-
+            OBSWebsocket obs = new OBSWebsocket();
+            obs.ConnectAsync("ws://localhost:4455", "kz3naMzj4PNJi2jn"); // <-- Code fails due to this line
         }
 
         public override void Dispose()
