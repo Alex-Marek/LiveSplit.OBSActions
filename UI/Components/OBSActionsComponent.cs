@@ -6,9 +6,6 @@ using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Windows.Forms;
-using OBSWebsocketDotNet;
-using OBSWebsocketDotNet.Types;
-using OBSWebsocketDotNet.Types.Events;
 
 
 namespace LiveSplit.UI.Components
@@ -41,8 +38,6 @@ namespace LiveSplit.UI.Components
             state.OnReset += state_OnReset;
             CurrentState = state;
 
-            OBSWebsocket obs = new OBSWebsocket();
-            obs.ConnectAsync("ws://localhost:4455", "kz3naMzj4PNJi2jn"); // <-- Code fails due to this line
         }
 
         public override void Dispose()
