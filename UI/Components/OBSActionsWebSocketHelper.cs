@@ -21,16 +21,25 @@ namespace LiveSplit.UI.Components
         private string url = null;
         private string password = null;
 
-        public OBSWebSocket(string url, string password = null)
+        public OBSWebSocket()
+        {
+
+        }
+
+        public void Connect(string url, string password = null)
         {
             this.url = url;
             if (password != null) { this.password = password; }
             if (url != null)
             {
                 this.obs = new WebSocket(url);
-                this.obs.Connect();
+                this.obs.ConnectAsync();
                 obs.OnMessage += HandleMessage;
             }
+        }
+        public void Disconnect()
+        {
+            this.obs.CloseAsync();
         }
         private void SendSimpleRequest(string nameOfRequest)
         {

@@ -35,7 +35,7 @@ namespace LiveSplit.UI.Components
             state.OnReset += state_OnReset;
             CurrentState = state;
 
-            this.obs = new OBSWebSocket("ws://localhost:4455", "kz3naMzj4PNJi2jn");
+            this.obs = new OBSWebSocket();
             this.recordingManager = new RecordingManager(obs);
             this.replayBufferManager = new ReplayBufferManager(obs);
         }
@@ -47,20 +47,25 @@ namespace LiveSplit.UI.Components
             CurrentState.OnSkipSplit -= state_OnSplitChange;
             CurrentState.OnUndoSplit -= state_OnSplitChange;
             CurrentState.OnReset -= state_OnReset;
+            if (this.obs.isIdentified == true)
+            {
+                this.obs.Disconnect();
+            }
         }
 
         //Every 3 seconds attempt to reconnect to the websocket server if not already connected
         public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode) 
         {
-            //DateTime currentTime = DateTime.Now;
-            //TimeSpan timeSinceLastCalled = currentTime - lastAttemptedConnect;
-            //if (timeSinceLastCalled.TotalSeconds >= 3 && obs.IsConnected == false)
-            //{
-            //    obs.ConnectAsync(Settings.webSocketIp, Settings.webSocketPassword);
-            //    recordingManager = new RecordingManager(obs);
-            //    replayBufferManager = new ReplayBufferManager(obs);
-            //    lastAttemptedConnect = currentTime;  // Update the last called time
-            //}
+            DateTime currentTime = DateTime.Now;
+            TimeSpan timeSinceLastCalled = currentTime - lastAttemptedConnect;
+            if (timeSinceLastCalled.TotalSeconds >= 3 && obs.isIdentified == false && Settings.webSocketIp != null)
+            {
+                if (Settings.webSocketIp.Contains("ws://") == false) { Settings.webSocketIp = "ws://" + Settings.webSocketIp; }
+                obs.Connect(Settings.webSocketIp, Settings.webSocketPassword);
+                recordingManager = new RecordingManager(obs);
+                replayBufferManager = new ReplayBufferManager(obs);
+                lastAttemptedConnect = currentTime;
+            }
         }
 
         public override Control GetSettingsControl(LayoutMode mode)
@@ -86,7 +91,7 @@ namespace LiveSplit.UI.Components
                 recordingManager.QueueStartRecording();
             }
 
-            if (Settings.goldReplay == true && obs.isIdentified == true)
+            if (Settings.startReplayBuffer == true && obs.isIdentified == true)
             {
                 replayBufferManager.QueueStartReplayBuffer();
             }
@@ -97,20 +102,26 @@ namespace LiveSplit.UI.Components
             //If the last split was the final one
             if (CurrentState.CurrentPhase == TimerPhase.Ended && obs.isIdentified == true)
             {
-                recordingManager.QueueStopRecording();
-                // If Personal Best Run
-                if (CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] == null || CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] < CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
+                if (Settings.stopRecording == true)
                 {
-                    recordingManager.QueueRenameMostRecentRecording($"PB: {CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod]}");
-                }
-                // If not personal best run
-                else 
-                {
-                    recordingManager.QueueDeleteMostRecentRecording();
+                    recordingManager.QueueStopRecording();
+                    // If Personal Best Run
+                    if (CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] == null || CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] < CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
+                    {
+                        recordingManager.QueueRenameMostRecentRecording($"PB: {CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod]}");
+                    }
+                    // If not personal best run
+                    else
+                    {
+                        if (Settings.deleteRecordings == true)
+                        {
+                            recordingManager.QueueDeleteMostRecentRecording();
+                        }
+                    }
                 }
             }
             //If the last split was just a regular non-last one
-            else 
+            else if (CurrentState.CurrentPhase != TimerPhase.Ended && obs.isIdentified == true)
             {
                 var splitIndex = CurrentState.CurrentSplitIndex - 1;
                 var timeDifference = CurrentState.Run[splitIndex].SplitTime[CurrentState.CurrentTimingMethod] - CurrentState.Run[splitIndex].Comparisons[CurrentState.CurrentComparison][CurrentState.CurrentTimingMethod];
@@ -130,7 +141,7 @@ namespace LiveSplit.UI.Components
                 }
             }
             //Regardless of if the split is the end of the run or not reset the replay buffer
-            if (Settings.goldReplay == true && obs.isIdentified == true)
+            if (Settings.resetReplayBuffer == true && obs.isIdentified == true)
             {
                 replayBufferManager.QueueStopReplayBuffer();
                 replayBufferManager.QueueStartReplayBuffer();
@@ -144,8 +155,10 @@ namespace LiveSplit.UI.Components
             if (Settings.stopRecording == true && obs.isIdentified == true)
             {
                 recordingManager.QueueStopRecording();
-                recordingManager.QueueDeleteMostRecentRecording();
-                recordingManager.QueueStartRecording();
+                if (Settings.deleteRecordings == true)
+                {
+                    recordingManager.QueueDeleteMostRecentRecording();
+                }
             }
         }
 
