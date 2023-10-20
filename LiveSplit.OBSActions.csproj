@@ -10,10 +10,16 @@
     <Reference Include="LiveSplit.Core">
       <HintPath>..\..\..\Documents\Programming\C#\LiveSplit\LiveSplit\bin\Release\LiveSplit.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Dependencies\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Dynamic" />
     <Reference Include="System.Windows" />
     <Reference Include="UpdateManager">
       <HintPath>..\..\..\Documents\Programming\C#\LiveSplit\LiveSplit\bin\Release\UpdateManager.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>..\Dependencies\websocket-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

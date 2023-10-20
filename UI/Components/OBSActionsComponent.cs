@@ -1,12 +1,7 @@
 ﻿using LiveSplit.Model;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Threading.Tasks;
 using System.Linq;
 using System.Windows.Forms;
-
 
 namespace LiveSplit.UI.Components
 {
@@ -15,8 +10,10 @@ namespace LiveSplit.UI.Components
         public OBSActionsSettings Settings { get; set; }
         protected LiveSplitState CurrentState { get; set; }
 
-        //private RecordingManager recordingManager;
-        //private ReplayBufferManager replayBufferManager;
+        private OBSWebSocket obs;
+
+        private RecordingManager recordingManager;
+        private ReplayBufferManager replayBufferManager;
 
         public bool Activated { get; set; }
 
@@ -38,6 +35,9 @@ namespace LiveSplit.UI.Components
             state.OnReset += state_OnReset;
             CurrentState = state;
 
+            this.obs = new OBSWebSocket("ws://localhost:4455", "kz3naMzj4PNJi2jn");
+            this.recordingManager = new RecordingManager(obs);
+            this.replayBufferManager = new ReplayBufferManager(obs);
         }
 
         public override void Dispose()
@@ -81,67 +81,72 @@ namespace LiveSplit.UI.Components
 
         void state_OnStart(object sender, EventArgs e)
         {
-            //if (Settings.startRecording == true && obs.IsConnected == true)
-            //{
-            //    recordingManager.QueueStartRecording();
-            //}
+            if (Settings.startRecording == true && obs.isIdentified == true)
+            {
+                recordingManager.QueueStartRecording();
+            }
+
+            if (Settings.goldReplay == true && obs.isIdentified == true)
+            {
+                replayBufferManager.QueueStartReplayBuffer();
+            }
         }
 
         void state_OnSplitChange(object sender, EventArgs e)
         {
             //If the last split was the final one
-            //if (CurrentState.CurrentPhase == TimerPhase.Ended && obs.IsConnected == true)
-            //{
-            //    recordingManager.QueueStopRecording();
-            //    // If Personal Best Run
-            //    if (CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] == null || CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] < CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
-            //    {
-            //        recordingManager.QueueRenameMostRecentRecording($"PB: {CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod]}");
-            //    }
-            //    // If not personal best run
-            //    else 
-            //    {
-            //        recordingManager.QueueDeleteMostRecentRecording();
-            //    }
-            //}
-            ////If the last split was just a regular non-last one
-            //else 
-            //{
-            //    var splitIndex = CurrentState.CurrentSplitIndex - 1;
-            //    var timeDifference = CurrentState.Run[splitIndex].SplitTime[CurrentState.CurrentTimingMethod] - CurrentState.Run[splitIndex].Comparisons[CurrentState.CurrentComparison][CurrentState.CurrentTimingMethod];
-            //    TimeSpan? curSegment = LiveSplitStateHelper.GetPreviousSegmentTime(CurrentState, splitIndex, CurrentState.CurrentTimingMethod);
-                
-            //    //If current segment finished with a time
-            //    if (curSegment != null)
-            //    {
-            //        // if current segment is the fastest ever done
-            //        if (CurrentState.Run[splitIndex].BestSegmentTime[CurrentState.CurrentTimingMethod] == null || curSegment < CurrentState.Run[splitIndex].BestSegmentTime[CurrentState.CurrentTimingMethod])
-            //        {
-            //            if (Settings.goldReplay == true && obs.IsConnected == true)
-            //            {
-            //                replayBufferManager.QueueSaveReplayBuffer();
-            //            }
-            //        }
-            //    }
-            //}
-            ////Regardless of if the split is the end of the run or not reset the replay buffer
-            //if (Settings.goldReplay == true && obs.IsConnected == true)
-            //{
-            //    replayBufferManager.QueueStopReplayBuffer();
-            //    replayBufferManager.QueueStartReplayBuffer();
-            //}
+            if (CurrentState.CurrentPhase == TimerPhase.Ended && obs.isIdentified == true)
+            {
+                recordingManager.QueueStopRecording();
+                // If Personal Best Run
+                if (CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] == null || CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] < CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
+                {
+                    recordingManager.QueueRenameMostRecentRecording($"PB: {CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod]}");
+                }
+                // If not personal best run
+                else 
+                {
+                    recordingManager.QueueDeleteMostRecentRecording();
+                }
+            }
+            //If the last split was just a regular non-last one
+            else 
+            {
+                var splitIndex = CurrentState.CurrentSplitIndex - 1;
+                var timeDifference = CurrentState.Run[splitIndex].SplitTime[CurrentState.CurrentTimingMethod] - CurrentState.Run[splitIndex].Comparisons[CurrentState.CurrentComparison][CurrentState.CurrentTimingMethod];
+                TimeSpan? curSegment = LiveSplitStateHelper.GetPreviousSegmentTime(CurrentState, splitIndex, CurrentState.CurrentTimingMethod);
+
+                //If current segment finished with a time
+                if (curSegment != null)
+                {
+                    // if current segment is the fastest ever done
+                    if (CurrentState.Run[splitIndex].BestSegmentTime[CurrentState.CurrentTimingMethod] == null || curSegment < CurrentState.Run[splitIndex].BestSegmentTime[CurrentState.CurrentTimingMethod])
+                    {
+                        if (Settings.goldReplay == true && obs.isIdentified == true)
+                        {
+                            replayBufferManager.QueueSaveReplayBuffer();
+                        }
+                    }
+                }
+            }
+            //Regardless of if the split is the end of the run or not reset the replay buffer
+            if (Settings.goldReplay == true && obs.isIdentified == true)
+            {
+                replayBufferManager.QueueStopReplayBuffer();
+                replayBufferManager.QueueStartReplayBuffer();
+            }
 
         }
 
         void state_OnReset(object sender, TimerPhase e)
         {
             // Reset = last run not completed = it's not pb = delete it
-            //if (Settings.stopRecording == true && obs.IsConnected == true)
-            //{
-            //    recordingManager.QueueStopRecording();
-            //    recordingManager.QueueDeleteMostRecentRecording();
-            //    recordingManager.QueueStartRecording();
-            //}
+            if (Settings.stopRecording == true && obs.isIdentified == true)
+            {
+                recordingManager.QueueStopRecording();
+                recordingManager.QueueDeleteMostRecentRecording();
+                recordingManager.QueueStartRecording();
+            }
         }
 
 
